@@ -1,0 +1,8 @@
+program     -> { statement }
+statement   -> assign | while | if | print
+assign      -> IDENT -> expression
+while       -> 'while' '(' expression ')' block
+if          -> 'if' '(' expression ')' block ['else' block]
+print       -> 'print' '(' expression ')'
+block       -> '{' { statement } '}'
+expression  -> NUMBER | IDENT

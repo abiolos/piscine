@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Mon IDE Web</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
+    <style>
+        #output, #env {
+            background: #eee;
+            padding: 10px;
+            white-space: pre-wrap;
+            margin-top: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>IDE Web – Mon Langage</h1>
+
+    <textarea id="code-editor">print("Bonjour")</textarea>
+    <br>
+    <button onclick="runCode()">Run</button>
+
+    <h3>Sortie :</h3>
+    <div id="output"></div>
+
+    <h3>Variables (environnement) :</h3>
+    <div id="env"></div>
+
+    <!-- CodeMirror JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
+
+    <!-- Ton script -->
+    <script src="js/app.js"></script>
+</body>
+</html>
