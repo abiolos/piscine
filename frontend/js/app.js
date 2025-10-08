@@ -1,15 +1,15 @@
 // Initialise CodeMirror
 let editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
     lineNumbers: true,
-    mode: "python", // ou ton propre mode si tu en définis un
+    mode: "python", // coloration
     theme: "default"
 });
 
-// Fonction appelée quand on clique sur "Run"
+// Fonction exécutée au clic sur "Run"
 function runCode() {
     const code = editor.getValue();
 
-    fetch("http://localhost:5000/run", {
+    fetch("http://127.0.0.1:5000/run", {
         method: "POST",
         headers: {
             "Content-Type": "application/json"
@@ -26,7 +26,7 @@ function runCode() {
             outputElement.innerText = "Erreur : " + data.error;
         }
 
-        // Afficher l'environnement (variables) si tu veux
+        // Afficher l'environnement (variables)
         const envElement = document.getElementById("env");
         if (data.env) {
             envElement.innerText = "Environnement :\n" + JSON.stringify(data.env, null, 2);
@@ -36,3 +36,6 @@ function runCode() {
         document.getElementById("output").innerText = "Erreur réseau : " + error;
     });
 }
+
+// Bouton Run
+document.getElementById("run").addEventListener("click", runCode);

@@ -2,35 +2,59 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <title>Mon IDE Web</title>
+    <title>IDE Web - Mini Lang</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.css">
-    <style>
-        #output, #env {
-            background: #eee;
-            padding: 10px;
-            white-space: pre-wrap;
-            margin-top: 10px;
-        }
-    </style>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <h1>IDE Web – Mon Langage</h1>
+    <h1>IDE Web – Mini Lang</h1>
+    <textarea id="code-editor" rows="20">// Programme d'exemple prêt à l'emploi
 
-    <textarea id="code-editor">print("Bonjour")</textarea>
+// Affectation et comparaisons
+x -> 10
+if(x > 5){
+    print("x est > 5")
+} elseif(x == 5){
+    print("x est 5")
+} else{
+    print("x <= 5")
+}
+
+// Boucle for style C
+for(i -> 0; i < 3; i -> i + 1){
+    print(i)
+}
+
+// while
+n -> 3
+while(n > 0){
+    print(n)
+    n -> n - 1
+}
+
+// Tableaux comme Python
+tab -> [1, 2, 3]
+append(tab, 4)
+print(tab[3]) // affiche 4
+
+// Fonctions
+func add(a, b){
+    ret a + b
+}
+res -> add(5, 7)
+print(res)
+</textarea>
     <br>
-    <button onclick="runCode()">Run</button>
+    <button id="run">Run</button>
 
     <h3>Sortie :</h3>
-    <div id="output"></div>
+    <pre id="output"></pre>
 
-    <h3>Variables (environnement) :</h3>
-    <div id="env"></div>
+    <h3>Environnement :</h3>
+    <pre id="env"></pre>
 
-    <!-- CodeMirror JS -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/codemirror.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/codemirror/5.65.13/mode/python/python.min.js"></script>
-
-    <!-- Ton script -->
     <script src="js/app.js"></script>
 </body>
 </html>

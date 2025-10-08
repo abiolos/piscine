@@ -1,17 +1,18 @@
-body {
-  font-family: monospace;
-  background: #f4f4f4;
-  padding: 20px;
+body { 
+    font-family: monospace; 
+    background: #f4f4f4; 
+    padding: 20px; 
 }
 
-textarea {
-  width: 100%;
-  font-family: monospace;
+textarea { 
+    width: 100%; 
+    font-family: monospace; 
 }
 
-#output {
-  background: #fff;
-  padding: 10px;
-  border: 1px solid #ccc;
-  margin-top: 10px;
+#output, #env { 
+    background: #fff; 
+    padding: 10px; 
+    border: 1px solid #ccc; 
+    margin-top: 10px; 
+    white-space: pre-wrap; 
 }

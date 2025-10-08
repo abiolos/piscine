@@ -1,15 +1,35 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS   # 👈 ajoute cette ligne
+from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
 from io import StringIO
 import sys
+import os
 
 from lexer import lexer
 from parser import Parser
 from interpreter import Interpreter
 
-app = Flask(__name__)
-CORS(app)  # 👈 autorise les requêtes depuis le frontend
+# 🧭 Configuration des chemins
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+FRONTEND_DIR = os.path.join(BASE_DIR, '../frontend')
 
+app = Flask(
+    __name__,
+    static_folder=os.path.join(FRONTEND_DIR, 'js'),
+    static_url_path='/js'
+)
+CORS(app)
+
+# 🚀 Route principale : sert index.html
+@app.route('/')
+def index():
+    return send_from_directory(FRONTEND_DIR, 'index.html')
+
+# 🎨 Sert les fichiers CSS
+@app.route('/css/<path:filename>')
+def serve_css(filename):
+    return send_from_directory(os.path.join(FRONTEND_DIR, 'css'), filename)
+
+# 🧠 API pour exécuter le code
 @app.route('/run', methods=['POST'])
 def run_code():
     data = request.get_json()
@@ -38,10 +58,6 @@ def run_code():
     return jsonify(response)
 
 
-@app.route('/')
-def index():
-    return "API du langage personnalisé en Python"
-
-
 if __name__ == '__main__':
+    print("🚀 Serveur lancé sur http://127.0.0.1:5000")
     app.run(debug=True)
