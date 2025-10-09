@@ -7,7 +7,9 @@ import sys
 import io
 
 app = Flask(__name__)
-CORS(app)
+# Autorise CORS pour le frontend sur l'IP publique de la VM et localhost
+CORS(app, origins=["http://195.15.242.197:8080", "http://localhost:8080"])
+
 interpreter = Interpreter()
 
 @app.route("/run", methods=["POST"])
@@ -29,4 +31,6 @@ def run_code():
         sys.stdout = old_stdout
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # Écoute sur toutes les interfaces pour rendre le serveur accessible depuis l'extérieur
+    app.run(host='0.0.0.0', debug=True)
+

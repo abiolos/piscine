@@ -1,0 +1,21 @@
+
+services:
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile.backend
+    container_name: piscine-backend
+    ports:
+      - "5000:5000"
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile.frontend
+    container_name: piscine-frontend
+    ports:
+      - "8080:80"
+    restart: always
+
+
