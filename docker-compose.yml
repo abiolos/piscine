@@ -5,9 +5,9 @@ services:
       context: ./backend
       dockerfile: Dockerfile.backend
     container_name: piscine-backend
-    ports:
-      - "5000:5000"
     restart: always
+    networks:
+      - app-network
 
   frontend:
     build:
@@ -17,5 +17,11 @@ services:
     ports:
       - "8080:80"
     restart: always
+    depends_on:
+      - backend
+    networks:
+      - app-network 
 
-
+networks:
+  app-network:
+    driver: bridge

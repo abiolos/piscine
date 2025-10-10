@@ -1,19 +1,16 @@
-// Initialise CodeMirror
-let editor = CodeMirror.fromTextArea(document.getElementById("code-editor"), {
+let editor= CodeMirror.fromTextArea(document.getElementById("code-editor"), {
     lineNumbers: true,
     mode: "python",
     theme: "default"
 });
 
 // Choix automatique selon l’environnement
-const API_URL =
-    window.location.hostname === "localhost" || window.location.hostname === "127.0.0.1"
-        ? "http://127.0.0.1:5000"
-        : "http://195.15.242.197:5000";  // IP publique de la VM
-
+//const API_URL = "http://backend:5000";
+const API_URL = "api" /*"http://backend:5000"*/;
 // Fonction exécutée au clic sur "Run"
 function runCode() {
-    const code = editor.getValue();
+      
+     const code = editor.getValue();
 
     fetch(`${API_URL}/run`, {
         method: "POST",
@@ -38,3 +35,4 @@ function runCode() {
 
 // Bouton Run
 document.getElementById("run").addEventListener("click", runCode);
+

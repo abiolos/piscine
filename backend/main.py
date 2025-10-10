@@ -9,26 +9,28 @@ from parser import Parser
 from interpreter import Interpreter
 
 # Configuration des chemins
-BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-FRONTEND_DIR = os.path.join(BASE_DIR, '../frontend')
+#BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+#FRONTEND_DIR = os.path.join(BASE_DIR, '../frontend')
 
 app = Flask(
     __name__,
-    static_folder=os.path.join(FRONTEND_DIR, 'js'),
-    static_url_path='/js'
+#    static_folder=os.path.join(FRONTEND_DIR, 'js'),
+#    static_url_path='/js'
 )
 # Autorise CORS pour les accès frontend
-CORS(app, origins=["http://195.15.242.197:8080", "http://localhost:8080"])
+#CORS(app, origins={"http://195.15.242.197:8080"})
+CORS(app, origins=["http://195.15.242.197:8080"])
+
 
 # Route principale : sert index.html
-@app.route('/')
-def index():
-    return send_from_directory(FRONTEND_DIR, 'index.html')
+#@app.route('/')
+#def index():
+ #   return send_from_directory(FRONTEND_DIR, 'index.html')
 
 # Sert les fichiers CSS
-@app.route('/css/<path:filename>')
-def serve_css(filename):
-    return send_from_directory(os.path.join(FRONTEND_DIR, 'css'), filename)
+#@app.route('/css/<path:filename>')
+#def serve_css(filename):
+#    return send_from_directory(os.path.join(FRONTEND_DIR, 'css'), filename)
 
 # API pour exécuter le code
 @app.route('/run', methods=['POST'])
